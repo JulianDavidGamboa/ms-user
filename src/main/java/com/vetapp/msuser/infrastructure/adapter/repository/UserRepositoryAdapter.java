@@ -1,8 +1,11 @@
 package com.vetapp.msuser.infrastructure.adapter.repository;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.vetapp.msuser.domain.exception.UserAlreadyExistsException;
 import com.vetapp.msuser.domain.model.User;
 import com.vetapp.msuser.domain.repository.IUserRepository;
 import com.vetapp.msuser.infrastructure.adapter.entity.UserEntity;
@@ -33,6 +36,11 @@ public class UserRepositoryAdapter implements IUserRepository {
         log.info("user response", userResponse);
 
         return userResponse;
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return jpaUserRepository.findByEmail(email).map(userMapper::toUser);
     }
 
 }

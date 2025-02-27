@@ -26,6 +26,7 @@ public class UserController {
 
     @PostMapping()
     public ResponseEntity<?> createUser(@RequestBody User user) {
+        log.info("User ", user.getEmail());
         return ResponseUtil.success("User created", createUserUseCase.create(user));
     }
 

@@ -7,7 +7,7 @@ public class ResponseUtil {
         return ResponseEntity.ok(ApiResponse.success(message, data));
     }
 
-    public static ResponseEntity<ApiResponse<Void>> error(String message) {
-        return ResponseEntity.badRequest().body(ApiResponse.error(message));
+    public static <T> ResponseEntity<ApiResponse<T>> error(String message, T data) {
+        return ResponseEntity.badRequest().body(ApiResponse.error(message, data));
     }
 }
